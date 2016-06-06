@@ -12,7 +12,7 @@ import by.rdepam.parser.service.IParser;
 
 public class Main {
 
-    private static final String xmlFileURI = "source\\menu.xml";
+    private static final String xmlFileURI = "source/menu.xml";
 
     public static void main(String[] args) {
 

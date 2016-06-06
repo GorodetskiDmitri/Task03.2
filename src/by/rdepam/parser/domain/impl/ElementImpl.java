@@ -134,6 +134,31 @@ public class ElementImpl implements Element {
     public void setTextContent(Text textContent) {
         this.textContent = textContent;
     }
+    
+    @Override
+    public short getNodeType() {
+        return 1;
+    }
+
+    @Override
+    public String getNodeValue() {
+        return null;
+    }
+
+    @Override
+    public Node getParentNode() {
+        return parentElement;
+    }
+
+    @Override
+    public Node getFirstChild() {
+        return childElements.get(0);
+    }
+
+    @Override
+    public Node getLastChild() {
+        return childElements.get(childElements.size() - 1);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -160,35 +185,9 @@ public class ElementImpl implements Element {
 
     @Override
     public String toString() {
-        return "ElementImp{" +
-                "parentElement=" + parentElement +
-                ", childElements=" + childElements +
-                ", textContent=" + textContent +
-                '}';
+    	return getClass().getName() + "@" + "parentElement : " + parentElement +
+    			", childElements : " + childElements +
+    			", textContent : " + textContent;
     }
 
-    @Override
-    public short getNodeType() {
-        return 1;
-    }
-
-    @Override
-    public String getNodeValue() {
-        return null;
-    }
-
-    @Override
-    public Node getParentNode() {
-        return parentElement;
-    }
-
-    @Override
-    public Node getFirstChild() {
-        return childElements.get(0);
-    }
-
-    @Override
-    public Node getLastChild() {
-        return childElements.get(childElements.size() - 1);
-    }
 }

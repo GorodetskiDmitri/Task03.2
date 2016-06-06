@@ -22,29 +22,6 @@ public class TextImpl implements Text {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TextImpl textImp = (TextImpl) o;
-
-        return !(value != null ? !value.equals(textImp.value) : textImp.value != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return value != null ? value.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return "TextImp{" +
-                "value='" + value + '\'' +
-                '}';
-    }
-
-    @Override
     public String getWholeText() {
         return value;
     }
@@ -78,4 +55,26 @@ public class TextImpl implements Text {
     public Node getLastChild() {
         return null;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TextImpl textImp = (TextImpl) o;
+
+        return !(value != null ? !value.equals(textImp.value) : textImp.value != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return value != null ? value.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+    	return getClass().getName() + "@" + "value : " + value;
+    }
+
 }

@@ -11,13 +11,13 @@ import java.io.IOException;
 
 public class OwnDOMParser implements IParser {
 
-	 	private final static char tagStart = '<';
-	    private final static char tagEnd = '>';
-	    private final static char tagClose = '/';
-	    private final static char quotes = '"';
-	    private final static char space = ' ';
-	    private final static char equally = '=';
-	    private final static char question = '?';
+	 	private final static char TAG_START = '<';
+	    private final static char TAG_END = '>';
+	    private final static char TAG_CLOSE = '/';
+	    private final static char QUOTE = '"';
+	    private final static char SPACE = ' ';
+	    private final static char EQUAL = '=';
+	    private final static char QUESTION = '?';
 
 	    private FileReader fileReader;
 	    private char currentSymbol;
@@ -75,23 +75,23 @@ public class OwnDOMParser implements IParser {
 	        if(currentSymbol == 0)
 	            return;
 
-	        while (readSymbol() != tagEnd) {
+	        while (readSymbol() != TAG_END) {
 
-	            if (currentSymbol == tagClose){
+	            if (currentSymbol == TAG_CLOSE){
 	                if(tagName.length() == 0)
 	                    closedTag = true;
 	                else
 	                    singleTag = true;
 	                break;
 	            }
-	            if (currentSymbol == space)
+	            if (currentSymbol == SPACE)
 	                readAttribute(element);
 	            else
 	                tagName.append(currentSymbol);
 	        }
 
 	        if (tagName.length() != 0)
-	            if  (tagName.charAt(0) == question && tagName.charAt(tagName.length() - 1) == question)
+	            if  (tagName.charAt(0) == QUESTION && tagName.charAt(tagName.length() - 1) == QUESTION)
 	                declaration = true;
 
 	        if (closedTag) {
@@ -120,7 +120,7 @@ public class OwnDOMParser implements IParser {
 	    private String readText() {
 	        StringBuilder textBetweenTags = new StringBuilder();
 
-	        while (currentSymbol != tagStart && currentSymbol != 0)
+	        while (currentSymbol != TAG_START && currentSymbol != 0)
 	            textBetweenTags.append(readSymbol());
 
 	        if (textBetweenTags.length() != 0)
@@ -135,12 +135,12 @@ public class OwnDOMParser implements IParser {
 	        StringBuilder attributeValue = new StringBuilder();
 
 	        
-	        while (readSymbol() != equally)
+	        while (readSymbol() != EQUAL)
 	            attributeName.append(currentSymbol);
 	        
 	        readSymbol();
 	        
-	        while (readSymbol() != quotes)
+	        while (readSymbol() != QUOTE)
 	            attributeValue.append(currentSymbol);
 
 	        attribute.setName(attributeName.toString());
