@@ -4,13 +4,13 @@ import by.rdepam.parser.domain.Document;
 import by.rdepam.parser.domain.Element;
 import by.rdepam.parser.domain.Node;
 
-public class DocumentImp implements Document {
+public class DocumentImpl implements Document {
     private Element documentElement;
 
-    public DocumentImp(){
+    public DocumentImpl(){
     }
 
-    public DocumentImp(Element documentElement){
+    public DocumentImpl(Element documentElement){
         this.documentElement = documentElement;
     }
 

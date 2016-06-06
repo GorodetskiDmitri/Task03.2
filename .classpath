@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Дима/Программирование/Java/Workspace/Task03.2/libs/dom_parser.jar"/>
+	<classpathentry kind="lib" path="I:/EPAM Training/Task 03 (SAX &amp; StAX)/dom_parser.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

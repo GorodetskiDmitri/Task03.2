@@ -4,15 +4,15 @@ import by.rdepam.parser.domain.Attribute;
 import by.rdepam.parser.domain.Element;
 import by.rdepam.parser.domain.Node;
 
-public class AttributeImp implements Attribute {
+public class AttributeImpl implements Attribute {
     private Element ownerElement;
     private String name;
     private String value;
 
-    public AttributeImp() {
+    public AttributeImpl() {
     }
 
-    public AttributeImp(String name, String value) {
+    public AttributeImpl(String name, String value) {
         this.name = name;
         this.value = value;
     }
@@ -48,7 +48,7 @@ public class AttributeImp implements Attribute {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AttributeImp that = (AttributeImp) o;
+        AttributeImpl that = (AttributeImpl) o;
 
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         return !(value != null ? !value.equals(that.value) : that.value != null);

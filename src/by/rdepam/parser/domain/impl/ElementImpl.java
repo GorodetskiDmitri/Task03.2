@@ -8,19 +8,19 @@ import by.rdepam.parser.domain.Element;
 import by.rdepam.parser.domain.Node;
 import by.rdepam.parser.domain.Text;
 
-public class ElementImp implements Element {
+public class ElementImpl implements Element {
     private String tagName;
     private Element parentElement;
     private List<Element> childElements;
     private List<Attribute> attributes;
     private Text textContent;
 
-    public ElementImp() {
+    public ElementImpl() {
         childElements = new ArrayList<>();
         attributes = new ArrayList<>();
     }
 
-    public ElementImp(String tagName, Text textContent, List<Attribute> attributes, List<Element> childElements, Element parentElement) {
+    public ElementImpl(String tagName, Text textContent, List<Attribute> attributes, List<Element> childElements, Element parentElement) {
         this.tagName = tagName;
         this.textContent = textContent;
         this.attributes = attributes;
@@ -140,7 +140,7 @@ public class ElementImp implements Element {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ElementImp that = (ElementImp) o;
+        ElementImpl that = (ElementImpl) o;
 
         if (parentElement != null ? !parentElement.equals(that.parentElement) : that.parentElement != null)
             return false;

@@ -3,13 +3,13 @@ package by.rdepam.parser.domain.impl;
 import by.rdepam.parser.domain.Node;
 import by.rdepam.parser.domain.Text;
 
-public class TextImp implements Text {
+public class TextImpl implements Text {
     private String value;
 
-    public TextImp() {
+    public TextImpl() {
     }
 
-    public TextImp(String value) {
+    public TextImpl(String value) {
         this.value = value;
     }
 
@@ -26,7 +26,7 @@ public class TextImp implements Text {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TextImp textImp = (TextImp) o;
+        TextImpl textImp = (TextImpl) o;
 
         return !(value != null ? !value.equals(textImp.value) : textImp.value != null);
 

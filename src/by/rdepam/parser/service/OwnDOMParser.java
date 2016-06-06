@@ -1,9 +1,9 @@
 package by.rdepam.parser.service;
 
-import by.rdepam.parser.domain.impl.AttributeImp;
-import by.rdepam.parser.domain.impl.DocumentImp;
-import by.rdepam.parser.domain.impl.ElementImp;
-import by.rdepam.parser.domain.impl.TextImp;
+import by.rdepam.parser.domain.impl.AttributeImpl;
+import by.rdepam.parser.domain.impl.DocumentImpl;
+import by.rdepam.parser.domain.impl.ElementImpl;
+import by.rdepam.parser.domain.impl.TextImpl;
 
 import java.io.File;
 import java.io.FileReader;
@@ -22,7 +22,7 @@ public class OwnDOMParser implements IParser {
 	    private FileReader fileReader;
 	    private char currentSymbol;
 
-	    private DocumentImp documentImp;
+	    private DocumentImpl documentImp;
 
 	    public OwnDOMParser() {
 	    }
@@ -37,7 +37,7 @@ public class OwnDOMParser implements IParser {
 	        }
 	    }
 
-	    public DocumentImp parse() {
+	    public DocumentImpl parse() {
 
 	        while (readSymbol() != 0) {
 	             readTag(null);
@@ -54,7 +54,7 @@ public class OwnDOMParser implements IParser {
 	            e.printStackTrace();
 	        }
 
-	        if(readSymbol != -1)
+	        if (readSymbol != -1)
 	            currentSymbol = (char)readSymbol;
 	        else
 	            currentSymbol = 0;
@@ -62,8 +62,8 @@ public class OwnDOMParser implements IParser {
 	        return currentSymbol;
 	    }
 
-	    private void readTag(ElementImp parentElement) {
-	        ElementImp element = new ElementImp();
+	    private void readTag(ElementImpl parentElement) {
+	        ElementImpl element = new ElementImpl();
 
 	        boolean closedTag = false;
 	        boolean singleTag = false;
@@ -77,44 +77,43 @@ public class OwnDOMParser implements IParser {
 
 	        while (readSymbol() != tagEnd) {
 
-	            if(currentSymbol == tagClose){
+	            if (currentSymbol == tagClose){
 	                if(tagName.length() == 0)
 	                    closedTag = true;
 	                else
 	                    singleTag = true;
 	                break;
 	            }
-	            if(currentSymbol == space)
+	            if (currentSymbol == space)
 	                readAttribute(element);
 	            else
 	                tagName.append(currentSymbol);
 	        }
 
-	        if(tagName.length() != 0)
-	            if(tagName.charAt(0) == question && tagName.charAt(tagName.length() - 1) == question)
+	        if (tagName.length() != 0)
+	            if  (tagName.charAt(0) == question && tagName.charAt(tagName.length() - 1) == question)
 	                declaration = true;
 
-	        if(closedTag){
-	            parentElement.setTextContent(new TextImp(textBetweenTags.toString()));
+	        if (closedTag) {
+	            parentElement.setTextContent(new TextImpl(textBetweenTags.toString()));
 	        }
 
-	        if(!closedTag && !declaration){
+	        if (!closedTag && !declaration) {
 	            element.setTagName(tagName.toString());
 	            element.setParentElement(parentElement);
-	            if(parentElement != null)
+	            if (parentElement != null)
 	                parentElement.addChildElement(element);
 	            else
-	                documentImp = new DocumentImp(element);
+	                documentImp = new DocumentImpl(element);
 	        }
 
-	        if(!closedTag && !singleTag && !declaration) {
-	            //ƒалее считываемые теги будут восприниматьс€ как дочерние элементы
+	        if (!closedTag && !singleTag && !declaration) {
 	            readTag(element);
 	        }
-	        else if(!closedTag)
+	        else if (!closedTag)
 	            readTag(parentElement);
 	        else
-	            readTag((ElementImp) parentElement.getParentElement());
+	            readTag((ElementImpl) parentElement.getParentElement());
 
 	    }
 
@@ -124,14 +123,14 @@ public class OwnDOMParser implements IParser {
 	        while (currentSymbol != tagStart && currentSymbol != 0)
 	            textBetweenTags.append(readSymbol());
 
-	        if(textBetweenTags.length() != 0)
+	        if (textBetweenTags.length() != 0)
 	            textBetweenTags.deleteCharAt(textBetweenTags.length() - 1);
 
 	        return textBetweenTags.toString();
 	    }
 
-	    private void readAttribute(ElementImp element) {
-	        AttributeImp attribute = new AttributeImp();
+	    private void readAttribute(ElementImpl element) {
+	        AttributeImpl attribute = new AttributeImpl();
 	        StringBuilder attributeName = new StringBuilder();
 	        StringBuilder attributeValue = new StringBuilder();
 
